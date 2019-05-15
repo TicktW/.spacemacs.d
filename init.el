@@ -317,10 +317,12 @@ executes.
  This function is mostly useful for variables that need to be set
 before packages are loaded. If you are unsure, you should try in setting them in
 `dotspacemacs/user-config' first."
+  ;; 中国国内源设置
   (setq configuration-layer--elpa-archives
         '(("melpa-cn" . "http://elpa.emacs-china.org/melpa/")
           ("org-cn"   . "http://elpa.emacs-china.org/org/")
           ("gnu-cn"   . "http://elpa.emacs-china.org/gnu/")))
+
   )
 
 (defun dotspacemacs/user-config ()
@@ -333,10 +335,19 @@ you should place your code here."
 
   ;; the cursor is in the center
   ;; (spacemacs/toggle-centered-point-globally-on)
+
   (global-linum-mode) ;; 显示行号
+
   (setq column-number-mode t)
+
   (xterm-mouse-mode -1)  ;; 可以使用鼠标复制粘贴
+
   (modify-syntax-entry ?_ "w")  ;; 不以 _ 作为单词分界
+  ;; 设置快捷键
+
+  ;; 有道词典插件
+  (define-key evil-normal-state-map (kbd ", y") 'youdao-dictionary-search-at-point+)
+  (define-key evil-visual-state-map (kbd ", y") 'youdao-dictionary-search-at-point+)
 )
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.
