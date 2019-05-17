@@ -69,7 +69,10 @@ values."
                                       elpy  ;; elpy插件
                                       ;; tabbar
                                       flycheck-inline ;; 在当前行显示错误信息
-                                      path-headerline-mode ;; 显示文件名在header
+                                      ;; path-headerline-mode ;; 显示文件名在header
+                                      doom-modeline
+                                      pyimport
+                                      alert
                                       )
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
@@ -343,9 +346,9 @@ you should place your code here."
   ;; 显示时间
   ( display-time )
 
-  ;; 显示文件名在header
-  (require 'path-headerline-mode)
-  (path-headerline-mode +1)
+  ;; ;; 显示文件名在header 用doom modeline 代替
+  ;; (require 'path-headerline-mode)
+  ;; (path-headerline-mode +1)
 
   ;; term color设置为256
   (add-hook 'term-mode-hook #'eterm-256color-mode)
@@ -369,6 +372,56 @@ you should place your code here."
   ;; 快捷关闭窗口
   (define-key evil-normal-state-map (kbd ", w") 'ace-delete-other-windows)
   (define-key evil-visual-state-map (kbd ", w") 'ace-delete-other-windows)
+
+  ;; doom mode line begin
+  (require 'doom-modeline)
+  (doom-modeline-mode 1)
+
+  ;; If non-nil, a word count will be added to the selection-info modeline segment.
+  (setq doom-modeline-enable-word-count t)
+
+  ;; Whether display buffer encoding.
+  (setq doom-modeline-buffer-encoding t)
+
+  ;; Whether display indentation information.
+  (set doom-modeline-indent-info t)
+
+  ;; If non-nil, only display one number for checker information if applicable.
+  (setq doom-modeline-checker-simple-format t)
+
+  ;; The maximum displayed length of the branch name of version control.
+  (setq doom-modeline-vcs-max-length 12)
+
+  ;; Whether display `lsp' state or not. Non-nil to display in mode-line.
+  (setq doom-modeline-lsp t)
+
+  ;; Whether display github notifications or not. Requires `ghub` package.
+  (setq doom-modeline-github t)
+
+  ;; The interval of checking github.
+  (setq doom-modeline-github-interval (* 30 60))
+
+  ;; Whether display environment version or not
+  (setq doom-modeline-env-version t)
+  ;; Or for individual languages
+  (setq doom-modeline-env-enable-python t)
+  ;; (setq doom-modeline-env-enable-ruby t)
+  ;; (setq doom-modeline-env-enable-perl t)
+  ;; (setq doom-modeline-env-enable-go t)
+  ;; (setq doom-modeline-env-enable-elixir t)
+  ;; (setq doom-modeline-env-enable-rust t)
+
+  ;; Change the executables to use for the language version string
+  (setq doom-modeline-env-python-executable "py")
+
+  ;; Whether display mu4e notifications or not. Requires `mu4e-alert' package.
+  (setq doom-modeline-mu4e nil)
+
+  ;; Whether display irc notifications or not. Requires `circe' package.
+  (setq doom-modeline-irc nil)
+
+  ;; Function to stylize the irc buffer names.
+  (setq doom-modeline-irc-stylize 'identity)
 )
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.
@@ -391,7 +444,7 @@ you should place your code here."
  '(frame-background-mode (quote dark))
  '(package-selected-packages
    (quote
-    (path-headerline-mode flycheck-inline tabbar elpy find-file-in-project ivy polymode wttrin eterm-256color color-theme-sanityinc-solarized youdao-dictionary names chinese-word-at-point git-gutter-fringe+ git-gutter-fringe fringe-helper git-gutter+ git-gutter diff-hl lv mmm-mode markdown-toc markdown-mode gh-md xterm-color shell-pop org-projectile org-category-capture org-present org-pomodoro alert log4e gntp org-mime org-download multi-term htmlize gnuplot eshell-z eshell-prompt-extras esh-help smeargle orgit magit-gitflow magit-popup helm-gitignore gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link evil-magit magit transient git-commit with-editor ein skewer-mode deferred websocket js2-mode simple-httpd stickyfunc-enhance srefactor yaml-mode web-mode tagedit slim-mode scss-mode sass-mode pug-mode less-css-mode helm-css-scss haml-mode emmet-mode company-web web-completion-data disaster company-c-headers cmake-mode clang-format helm-company helm-c-yasnippet fuzzy flyspell-correct-helm flyspell-correct flycheck-pos-tip pos-tip flycheck company-statistics company-anaconda company auto-yasnippet yasnippet auto-dictionary ac-ispell auto-complete yapfify pyvenv pytest pyenv-mode py-isort pip-requirements live-py-mode hy-mode dash-functional helm-pydoc cython-mode anaconda-mode pythonic ws-butler winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spaceline powerline restart-emacs request rainbow-delimiters popwin persp-mode pcre2el paradox spinner org-plus-contrib org-bullets open-junk-file neotree move-text macrostep lorem-ipsum linum-relative link-hint indent-guide hydra hungry-delete hl-todo highlight-parentheses highlight-numbers parent-mode highlight-indentation helm-themes helm-swoop helm-projectile helm-mode-manager helm-make projectile pkg-info epl helm-flx helm-descbinds helm-ag google-translate golden-ratio flx-ido flx fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist highlight evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state smartparens evil-indent-plus evil-iedit-state iedit evil-exchange evil-escape evil-ediff evil-args evil-anzu anzu evil goto-chg undo-tree eval-sexp-fu elisp-slime-nav dumb-jump f dash s diminish define-word column-enforce-mode clean-aindent-mode bind-map bind-key auto-highlight-symbol auto-compile packed aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line helm avy helm-core popup async)))
+    (pyimport shut-up doom-modeline shrink-path all-the-icons memoize path-headerline-mode flycheck-inline tabbar elpy find-file-in-project ivy polymode wttrin eterm-256color color-theme-sanityinc-solarized youdao-dictionary names chinese-word-at-point git-gutter-fringe+ git-gutter-fringe fringe-helper git-gutter+ git-gutter diff-hl lv mmm-mode markdown-toc markdown-mode gh-md xterm-color shell-pop org-projectile org-category-capture org-present org-pomodoro alert log4e gntp org-mime org-download multi-term htmlize gnuplot eshell-z eshell-prompt-extras esh-help smeargle orgit magit-gitflow magit-popup helm-gitignore gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link evil-magit magit transient git-commit with-editor ein skewer-mode deferred websocket js2-mode simple-httpd stickyfunc-enhance srefactor yaml-mode web-mode tagedit slim-mode scss-mode sass-mode pug-mode less-css-mode helm-css-scss haml-mode emmet-mode company-web web-completion-data disaster company-c-headers cmake-mode clang-format helm-company helm-c-yasnippet fuzzy flyspell-correct-helm flyspell-correct flycheck-pos-tip pos-tip flycheck company-statistics company-anaconda company auto-yasnippet yasnippet auto-dictionary ac-ispell auto-complete yapfify pyvenv pytest pyenv-mode py-isort pip-requirements live-py-mode hy-mode dash-functional helm-pydoc cython-mode anaconda-mode pythonic ws-butler winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spaceline powerline restart-emacs request rainbow-delimiters popwin persp-mode pcre2el paradox spinner org-plus-contrib org-bullets open-junk-file neotree move-text macrostep lorem-ipsum linum-relative link-hint indent-guide hydra hungry-delete hl-todo highlight-parentheses highlight-numbers parent-mode highlight-indentation helm-themes helm-swoop helm-projectile helm-mode-manager helm-make projectile pkg-info epl helm-flx helm-descbinds helm-ag google-translate golden-ratio flx-ido flx fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist highlight evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state smartparens evil-indent-plus evil-iedit-state iedit evil-exchange evil-escape evil-ediff evil-args evil-anzu anzu evil goto-chg undo-tree eval-sexp-fu elisp-slime-nav dumb-jump f dash s diminish define-word column-enforce-mode clean-aindent-mode bind-map bind-key auto-highlight-symbol auto-compile packed aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line helm avy helm-core popup async)))
  '(paradox-github-token t)
  '(vc-annotate-background nil)
  '(vc-annotate-color-map
