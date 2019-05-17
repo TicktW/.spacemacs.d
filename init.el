@@ -399,7 +399,10 @@ you should place your code here."
      (320 . "#6c71c4")
      (340 . "#dc322f")
      (360 . "#cb4b16"))))
- '(vc-annotate-very-old-color nil))
+ '(vc-annotate-very-old-color nil)
+ '(yas-snippet-dirs
+   (quote
+    ("~/.spacemacs.d/snippets" yas-installed-snippets-dir "~/.emacs.d/layers/+completion/auto-completion/local/snippets" "~/.emacs.d/elpa/elpy-20190508.1521/snippets/"))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
