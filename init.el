@@ -372,6 +372,10 @@ you should place your code here."
   ;; 快捷关闭窗口
   (define-key evil-normal-state-map (kbd ", w") 'ace-delete-other-windows)
   (define-key evil-visual-state-map (kbd ", w") 'ace-delete-other-windows)
+  ;; 发送cell到repl
+
+  (define-key evil-normal-state-map (kbd ", s c") 'elpy-shell-send-codecell)
+  (define-key evil-visual-state-map (kbd ", s c") 'elpy-shell-send-codecell)
 
   ;; doom mode line begin
   (require 'doom-modeline)
