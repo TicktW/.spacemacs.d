@@ -54,7 +54,7 @@ values."
             shell-default-height 30
             shell-default-position 'bottom)
      ;; spell-checking
-     syntax-checking
+     ;; syntax-checking
      ;; ipython-notebook
      ;; semantic
      version-control
@@ -69,9 +69,8 @@ values."
                                       elpy  ;; elpy插件
                                       ;; tabbar
                                       flycheck-inline ;; 在当前行显示错误信息
-                                      ;; path-headerline-mode ;; 显示文件名在header
-                                      doom-modeline
-                                      pyimport
+                                      path-headerline-mode ;; 显示文件名在header
+                                      ;; doom-modeline
                                       alert
                                       yasnippet-snippets
                                       )
@@ -157,7 +156,7 @@ values."
    ;; Default font, or prioritized list of fonts. `powerline-scale' allows to
    ;; quickly tweak the mode-line size to make separators look not too crappy.
    dotspacemacs-default-font '("Source Code Pro"
-                               :size 13
+                               :size 20
                                :weight normal
                                :width normal
                                :powerline-scale 1.1)
@@ -369,7 +368,7 @@ you should place your code here."
   (xterm-mouse-mode -1)  ;; 可以使用鼠标复制粘贴
 
   (modify-syntax-entry ?_ "w")  ;; 不以 _ 作为单词分界
-  (elpy-enable)
+  ;; (elpy-enable)
   ;; 实时显示错误
   (with-eval-after-load 'flycheck
     (add-hook 'flycheck-mode-hook #'flycheck-inline-mode))
@@ -388,66 +387,54 @@ you should place your code here."
   (define-key evil-normal-state-map (kbd ", s c") 'elpy-shell-send-codecell)
   (define-key evil-visual-state-map (kbd ", s c") 'elpy-shell-send-codecell)
 
-  ;; 发送cell到repl
-  (with-eval-after-load 'elpy
-    (evil-define-key evil-normal-state-map (kbd ", s r") 'elpy-shell-send-region-or-buffer &optional ARG)
-    (evil-define-key evil-visual-state-map (kbd ", s r") 'elpy-shell-send-region-or-buffer-and-go &optional ARG)
-
-    (define-key evil-normal-state-map (kbd ", s R") 'elpy-shell-send-region-or-buffer &optional ARG)
-    (define-key evil-visual-state-map (kbd ", s R") 'elpy-shell-send-region-or-buffer-and-go &optional ARG)
-    )
-
 
   ;; doom mode line begin
-  (require 'doom-modeline)
-  (doom-modeline-mode 1)
+  ;; (require 'doom-modeline)
+  ;; (doom-modeline-mode 1)
 
-  ;; If non-nil, a word count will be added to the selection-info modeline segment.
-  (setq doom-modeline-enable-word-count t)
+  ;; ;; If non-nil, a word count will be added to the selection-info modeline segment.
+  ;; (setq doom-modeline-enable-word-count t)
 
-  ;; Whether display buffer encoding.
-  (setq doom-modeline-buffer-encoding t)
+  ;; ;; Whether display buffer encoding.
+  ;; (setq doom-modeline-buffer-encoding t)
 
-  ;; Whether display indentation information.
-  (set doom-modeline-indent-info t)
+  ;; ;; Whether display indentation information.
+  ;; (set doom-modeline-indent-info t)
 
-  ;; If non-nil, only display one number for checker information if applicable.
-  (setq doom-modeline-checker-simple-format t)
+  ;; ;; If non-nil, only display one number for checker information if applicable.
+  ;; (setq doom-modeline-checker-simple-format t)
 
-  ;; The maximum displayed length of the branch name of version control.
-  (setq doom-modeline-vcs-max-length 12)
+  ;; ;; The maximum displayed length of the branch name of version control.
+  ;; (setq doom-modeline-vcs-max-length 12)
 
-  ;; Whether display `lsp' state or not. Non-nil to display in mode-line.
-  (setq doom-modeline-lsp t)
+  ;; ;; Whether display `lsp' state or not. Non-nil to display in mode-line.
+  ;; (setq doom-modeline-lsp t)
 
-  ;; Whether display github notifications or not. Requires `ghub` package.
-  (setq doom-modeline-github t)
+  ;; ;; Whether display github notifications or not. Requires `ghub` package.
+  ;; (setq doom-modeline-github t)
 
-  ;; The interval of checking github.
-  (setq doom-modeline-github-interval (* 30 60))
+  ;; ;; The interval of checking github.
+  ;; (setq doom-modeline-github-interval (* 30 60))
 
-  ;; Whether display environment version or not
-  (setq doom-modeline-env-version t)
-  ;; Or for individual languages
-  (setq doom-modeline-env-enable-python t)
-  ;; (setq doom-modeline-env-enable-ruby t)
-  ;; (setq doom-modeline-env-enable-perl t)
-  ;; (setq doom-modeline-env-enable-go t)
-  ;; (setq doom-modeline-env-enable-elixir t)
-  ;; (setq doom-modeline-env-enable-rust t)
+  ;; ;; Whether display environment version or not
+  ;; (setq doom-modeline-env-version t)
+  ;; ;; Or for individual languages
+  ;; (setq doom-modeline-env-enable-python t)
+  ;; ;; (setq doom-modeline-env-enable-ruby t)
+  ;; ;; (setq doom-modeline-env-enable-perl t)
+  ;; ;; (setq doom-modeline-env-enable-go t)
+  ;; ;; (setq doom-modeline-env-enable-elixir t)
+  ;; ;; (setq doom-modeline-env-enable-rust t)
 
-  ;; Change the executables to use for the language version string
-  (setq doom-modeline-env-python-executable "py")
+  ;; ;; Change the executables to use for the language version string
+  ;; (setq doom-modeline-env-python-executable "py")
 
   ;; Whether display mu4e notifications or not. Requires `mu4e-alert' package.
-  (setq doom-modeline-mu4e nil)
+  ;; (setq doom-modeline-mu4e nil)
 
   ;; Whether display irc notifications or not. Requires `circe' package.
-  (setq doom-modeline-irc nil)
+  ;; (setq doom-modeline-irc nil)
 
-  ;; Function to stylize the irc buffer names.
-  (setq doom-modeline-irc-stylize 'identity)
-  ;;
 )
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.
