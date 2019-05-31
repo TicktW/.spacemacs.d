@@ -331,6 +331,7 @@ before packages are loaded. If you are unsure, you should try in setting them in
   ;;       '(("melpa-cn" . "http://elpa.emacs-china.org/melpa/")
   ;;         ("org-cn"   . "http://elpa.emacs-china.org/org/")
   ;;         ("gnu-cn"   . "http://elpa.emacs-china.org/gnu/")))
+  (modify-syntax-entry ?_ "w")  ;; 不以 _ 作为单词分界
 
   )
 
@@ -350,14 +351,15 @@ This is the place where most of your configurations should be done. Unless it is
 explicitly specified that a variable should be set before a package is loaded,
 you should place your code here."
 
+  (modify-syntax-entry ?_ "w")  ;; 不以 _ 作为单词分界
+
   ;; the cursor is in the center
   ;; (spacemacs/toggle-centered-point-globally-on)
   ;; 显示时间
   ( display-time )
 
-  ;; ;; 显示文件名在header 用doom modeline 代替
-  ;; (require 'path-headerline-mode)
-  ;; (path-headerline-mode +1)
+  ;; 显示文件名在header
+  (path-headerline-mode +1)
 
   ;; term color设置为256
   (add-hook 'term-mode-hook #'eterm-256color-mode)
@@ -367,11 +369,10 @@ you should place your code here."
 
   (xterm-mouse-mode -1)  ;; 可以使用鼠标复制粘贴
 
-  (modify-syntax-entry ?_ "w")  ;; 不以 _ 作为单词分界
   ;; (elpy-enable)
-  ;; 实时显示错误
-  (with-eval-after-load 'flycheck
-    (add-hook 'flycheck-mode-hook #'flycheck-inline-mode))
+  ;; ;; 实时显示错误
+  ;; (with-eval-after-load 'flycheck
+  ;;   (add-hook 'flycheck-mode-hook #'flycheck-inline-mode))
 
   ;; 设置快捷键
   ;; 有道词典插件
@@ -386,54 +387,6 @@ you should place your code here."
 
   (define-key evil-normal-state-map (kbd ", s c") 'elpy-shell-send-codecell)
   (define-key evil-visual-state-map (kbd ", s c") 'elpy-shell-send-codecell)
-
-
-  ;; doom mode line begin
-  ;; (require 'doom-modeline)
-  ;; (doom-modeline-mode 1)
-
-  ;; ;; If non-nil, a word count will be added to the selection-info modeline segment.
-  ;; (setq doom-modeline-enable-word-count t)
-
-  ;; ;; Whether display buffer encoding.
-  ;; (setq doom-modeline-buffer-encoding t)
-
-  ;; ;; Whether display indentation information.
-  ;; (set doom-modeline-indent-info t)
-
-  ;; ;; If non-nil, only display one number for checker information if applicable.
-  ;; (setq doom-modeline-checker-simple-format t)
-
-  ;; ;; The maximum displayed length of the branch name of version control.
-  ;; (setq doom-modeline-vcs-max-length 12)
-
-  ;; ;; Whether display `lsp' state or not. Non-nil to display in mode-line.
-  ;; (setq doom-modeline-lsp t)
-
-  ;; ;; Whether display github notifications or not. Requires `ghub` package.
-  ;; (setq doom-modeline-github t)
-
-  ;; ;; The interval of checking github.
-  ;; (setq doom-modeline-github-interval (* 30 60))
-
-  ;; ;; Whether display environment version or not
-  ;; (setq doom-modeline-env-version t)
-  ;; ;; Or for individual languages
-  ;; (setq doom-modeline-env-enable-python t)
-  ;; ;; (setq doom-modeline-env-enable-ruby t)
-  ;; ;; (setq doom-modeline-env-enable-perl t)
-  ;; ;; (setq doom-modeline-env-enable-go t)
-  ;; ;; (setq doom-modeline-env-enable-elixir t)
-  ;; ;; (setq doom-modeline-env-enable-rust t)
-
-  ;; ;; Change the executables to use for the language version string
-  ;; (setq doom-modeline-env-python-executable "py")
-
-  ;; Whether display mu4e notifications or not. Requires `mu4e-alert' package.
-  ;; (setq doom-modeline-mu4e nil)
-
-  ;; Whether display irc notifications or not. Requires `circe' package.
-  ;; (setq doom-modeline-irc nil)
 
 )
 ;; Do not write anything past this comment. This is where Emacs will
