@@ -32,6 +32,7 @@ values."
    ;; List of configuration layers to load.
    dotspacemacs-configuration-layers
    '(
+     yaml
      markdown
      html
      python
@@ -73,6 +74,8 @@ values."
                                       ;; doom-modeline
                                       alert
                                       yasnippet-snippets
+                                      leetcode
+                                      wttrin
                                       )
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
@@ -343,6 +346,12 @@ before packages are loaded. If you are unsure, you should try in setting them in
       (setq cell-count (+ cell-count 1)))
     (setq wxj-c cell-count)))
 
+(defun put_remote()
+  "调用系统命令 put_k8s"
+  (interactive)
+  (shell-command "put_k8s")
+  )
+
 (defun dotspacemacs/user-config ()
   "Configuration function for user code.
 This function is called at the very end of Spacemacs initialization after
@@ -357,6 +366,17 @@ you should place your code here."
   ;; (spacemacs/toggle-centered-point-globally-on)
   ;; 显示时间
   ( display-time )
+
+  ;; wttrin
+  (setq wttrin-default-cities '("Beijing" "Datong"))
+  (setq wttrin-default-accept-language '("Accept-Language" . "zh-cn"))
+
+  ;; leetcode 插件
+  (setq leetcode-account "TicktW")
+  (setq leetcode-password "wxjleetcode123")
+  (setq leetcode-prefer-language "python3")
+  ;; (setq request-log-level 'debug)
+  ;; (setq request-message-level 'debug)
 
   ;; 显示文件名在header
   (path-headerline-mode +1)
@@ -383,6 +403,10 @@ you should place your code here."
   (define-key evil-normal-state-map (kbd ", w") 'ace-delete-other-windows)
   (define-key evil-visual-state-map (kbd ", w") 'ace-delete-other-windows)
 
+  ;; 调用系统命令 put_k8s
+  (define-key evil-normal-state-map (kbd ", p") 'put_remote)
+  (define-key evil-visual-state-map (kbd ", p") 'put_remote)
+
   ;; 发送cell到repl
 
   (define-key evil-normal-state-map (kbd ", s c") 'elpy-shell-send-codecell)
@@ -403,15 +427,18 @@ you should place your code here."
  '(custom-safe-themes
    (quote
     ("bffa9739ce0752a37d9b1eee78fc00ba159748f50dc328af4be661484848e476" "4aee8551b53a43a883cb0b7f3255d6859d766b6c5e14bcb01bed572fcbef4328" default)))
+ '(elpy-autodoc-delay 0.3)
+ '(elpy-disable-backend-error-display nil)
  '(elpy-eldoc-show-current-function t)
  '(evil-want-Y-yank-to-eol nil)
  '(eww-search-prefix "https://cn.bing.com/search?q=")
  '(fci-rule-color "#073642" t)
  '(flycheck-color-mode-line-face-to-color (quote mode-line-buffer-id))
+ '(flymake-gui-warnings-enabled nil)
  '(frame-background-mode (quote dark))
  '(package-selected-packages
    (quote
-    (yasnippet-snippets pyimport shut-up doom-modeline shrink-path all-the-icons memoize path-headerline-mode flycheck-inline tabbar elpy find-file-in-project ivy polymode wttrin eterm-256color color-theme-sanityinc-solarized youdao-dictionary names chinese-word-at-point git-gutter-fringe+ git-gutter-fringe fringe-helper git-gutter+ git-gutter diff-hl lv mmm-mode markdown-toc markdown-mode gh-md xterm-color shell-pop org-projectile org-category-capture org-present org-pomodoro alert log4e gntp org-mime org-download multi-term htmlize gnuplot eshell-z eshell-prompt-extras esh-help smeargle orgit magit-gitflow magit-popup helm-gitignore gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link evil-magit magit transient git-commit with-editor ein skewer-mode deferred websocket js2-mode simple-httpd stickyfunc-enhance srefactor yaml-mode web-mode tagedit slim-mode scss-mode sass-mode pug-mode less-css-mode helm-css-scss haml-mode emmet-mode company-web web-completion-data disaster company-c-headers cmake-mode clang-format helm-company helm-c-yasnippet fuzzy flyspell-correct-helm flyspell-correct flycheck-pos-tip pos-tip flycheck company-statistics company-anaconda company auto-yasnippet yasnippet auto-dictionary ac-ispell auto-complete yapfify pyvenv pytest pyenv-mode py-isort pip-requirements live-py-mode hy-mode dash-functional helm-pydoc cython-mode anaconda-mode pythonic ws-butler winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spaceline powerline restart-emacs request rainbow-delimiters popwin persp-mode pcre2el paradox spinner org-plus-contrib org-bullets open-junk-file neotree move-text macrostep lorem-ipsum linum-relative link-hint indent-guide hydra hungry-delete hl-todo highlight-parentheses highlight-numbers parent-mode highlight-indentation helm-themes helm-swoop helm-projectile helm-mode-manager helm-make projectile pkg-info epl helm-flx helm-descbinds helm-ag google-translate golden-ratio flx-ido flx fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist highlight evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state smartparens evil-indent-plus evil-iedit-state iedit evil-exchange evil-escape evil-ediff evil-args evil-anzu anzu evil goto-chg undo-tree eval-sexp-fu elisp-slime-nav dumb-jump f dash s diminish define-word column-enforce-mode clean-aindent-mode bind-map bind-key auto-highlight-symbol auto-compile packed aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line helm avy helm-core popup async)))
+    (yahoo-weather leetcode graphql request-deferred yasnippet-snippets pyimport shut-up doom-modeline shrink-path all-the-icons memoize path-headerline-mode flycheck-inline tabbar elpy find-file-in-project ivy polymode wttrin eterm-256color color-theme-sanityinc-solarized youdao-dictionary names chinese-word-at-point git-gutter-fringe+ git-gutter-fringe fringe-helper git-gutter+ git-gutter diff-hl lv mmm-mode markdown-toc markdown-mode gh-md xterm-color shell-pop org-projectile org-category-capture org-present org-pomodoro alert log4e gntp org-mime org-download multi-term htmlize gnuplot eshell-z eshell-prompt-extras esh-help smeargle orgit magit-gitflow magit-popup helm-gitignore gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link evil-magit magit transient git-commit with-editor ein skewer-mode deferred websocket js2-mode simple-httpd stickyfunc-enhance srefactor yaml-mode web-mode tagedit slim-mode scss-mode sass-mode pug-mode less-css-mode helm-css-scss haml-mode emmet-mode company-web web-completion-data disaster company-c-headers cmake-mode clang-format helm-company helm-c-yasnippet fuzzy flyspell-correct-helm flyspell-correct flycheck-pos-tip pos-tip flycheck company-statistics company-anaconda company auto-yasnippet yasnippet auto-dictionary ac-ispell auto-complete yapfify pyvenv pytest pyenv-mode py-isort pip-requirements live-py-mode hy-mode dash-functional helm-pydoc cython-mode anaconda-mode pythonic ws-butler winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spaceline powerline restart-emacs request rainbow-delimiters popwin persp-mode pcre2el paradox spinner org-plus-contrib org-bullets open-junk-file neotree move-text macrostep lorem-ipsum linum-relative link-hint indent-guide hydra hungry-delete hl-todo highlight-parentheses highlight-numbers parent-mode highlight-indentation helm-themes helm-swoop helm-projectile helm-mode-manager helm-make projectile pkg-info epl helm-flx helm-descbinds helm-ag google-translate golden-ratio flx-ido flx fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist highlight evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state smartparens evil-indent-plus evil-iedit-state iedit evil-exchange evil-escape evil-ediff evil-args evil-anzu anzu evil goto-chg undo-tree eval-sexp-fu elisp-slime-nav dumb-jump f dash s diminish define-word column-enforce-mode clean-aindent-mode bind-map bind-key auto-highlight-symbol auto-compile packed aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line helm avy helm-core popup async)))
  '(paradox-github-token t)
  '(vc-annotate-background nil)
  '(vc-annotate-color-map
