@@ -32,9 +32,11 @@ values."
    ;; List of configuration layers to load.
    dotspacemacs-configuration-layers
    '(
+     csv
      yaml
      markdown
      html
+     (go :variables go-tab-width 4)
      python
      ;; (python :variables
      ;;         python-enable-yapf-format-on-save t)
@@ -47,7 +49,7 @@ values."
      auto-completion
      ;; better-defaults
      emacs-lisp
-     ;; c-c++
+     c-c++
      git
      ;; markdown
      org
@@ -438,7 +440,7 @@ you should place your code here."
  '(frame-background-mode (quote dark))
  '(package-selected-packages
    (quote
-    (yahoo-weather leetcode graphql request-deferred yasnippet-snippets pyimport shut-up doom-modeline shrink-path all-the-icons memoize path-headerline-mode flycheck-inline tabbar elpy find-file-in-project ivy polymode wttrin eterm-256color color-theme-sanityinc-solarized youdao-dictionary names chinese-word-at-point git-gutter-fringe+ git-gutter-fringe fringe-helper git-gutter+ git-gutter diff-hl lv mmm-mode markdown-toc markdown-mode gh-md xterm-color shell-pop org-projectile org-category-capture org-present org-pomodoro alert log4e gntp org-mime org-download multi-term htmlize gnuplot eshell-z eshell-prompt-extras esh-help smeargle orgit magit-gitflow magit-popup helm-gitignore gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link evil-magit magit transient git-commit with-editor ein skewer-mode deferred websocket js2-mode simple-httpd stickyfunc-enhance srefactor yaml-mode web-mode tagedit slim-mode scss-mode sass-mode pug-mode less-css-mode helm-css-scss haml-mode emmet-mode company-web web-completion-data disaster company-c-headers cmake-mode clang-format helm-company helm-c-yasnippet fuzzy flyspell-correct-helm flyspell-correct flycheck-pos-tip pos-tip flycheck company-statistics company-anaconda company auto-yasnippet yasnippet auto-dictionary ac-ispell auto-complete yapfify pyvenv pytest pyenv-mode py-isort pip-requirements live-py-mode hy-mode dash-functional helm-pydoc cython-mode anaconda-mode pythonic ws-butler winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spaceline powerline restart-emacs request rainbow-delimiters popwin persp-mode pcre2el paradox spinner org-plus-contrib org-bullets open-junk-file neotree move-text macrostep lorem-ipsum linum-relative link-hint indent-guide hydra hungry-delete hl-todo highlight-parentheses highlight-numbers parent-mode highlight-indentation helm-themes helm-swoop helm-projectile helm-mode-manager helm-make projectile pkg-info epl helm-flx helm-descbinds helm-ag google-translate golden-ratio flx-ido flx fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist highlight evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state smartparens evil-indent-plus evil-iedit-state iedit evil-exchange evil-escape evil-ediff evil-args evil-anzu anzu evil goto-chg undo-tree eval-sexp-fu elisp-slime-nav dumb-jump f dash s diminish define-word column-enforce-mode clean-aindent-mode bind-map bind-key auto-highlight-symbol auto-compile packed aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line helm avy helm-core popup async)))
+    (go-guru go-eldoc company-go go-mode csv-mode yahoo-weather leetcode graphql request-deferred yasnippet-snippets pyimport shut-up doom-modeline shrink-path all-the-icons memoize path-headerline-mode flycheck-inline tabbar elpy find-file-in-project ivy polymode wttrin eterm-256color color-theme-sanityinc-solarized youdao-dictionary names chinese-word-at-point git-gutter-fringe+ git-gutter-fringe fringe-helper git-gutter+ git-gutter diff-hl lv mmm-mode markdown-toc markdown-mode gh-md xterm-color shell-pop org-projectile org-category-capture org-present org-pomodoro alert log4e gntp org-mime org-download multi-term htmlize gnuplot eshell-z eshell-prompt-extras esh-help smeargle orgit magit-gitflow magit-popup helm-gitignore gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link evil-magit magit transient git-commit with-editor ein skewer-mode deferred websocket js2-mode simple-httpd stickyfunc-enhance srefactor yaml-mode web-mode tagedit slim-mode scss-mode sass-mode pug-mode less-css-mode helm-css-scss haml-mode emmet-mode company-web web-completion-data disaster company-c-headers cmake-mode clang-format helm-company helm-c-yasnippet fuzzy flyspell-correct-helm flyspell-correct flycheck-pos-tip pos-tip flycheck company-statistics company-anaconda company auto-yasnippet yasnippet auto-dictionary ac-ispell auto-complete yapfify pyvenv pytest pyenv-mode py-isort pip-requirements live-py-mode hy-mode dash-functional helm-pydoc cython-mode anaconda-mode pythonic ws-butler winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spaceline powerline restart-emacs request rainbow-delimiters popwin persp-mode pcre2el paradox spinner org-plus-contrib org-bullets open-junk-file neotree move-text macrostep lorem-ipsum linum-relative link-hint indent-guide hydra hungry-delete hl-todo highlight-parentheses highlight-numbers parent-mode highlight-indentation helm-themes helm-swoop helm-projectile helm-mode-manager helm-make projectile pkg-info epl helm-flx helm-descbinds helm-ag google-translate golden-ratio flx-ido flx fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist highlight evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state smartparens evil-indent-plus evil-iedit-state iedit evil-exchange evil-escape evil-ediff evil-args evil-anzu anzu evil goto-chg undo-tree eval-sexp-fu elisp-slime-nav dumb-jump f dash s diminish define-word column-enforce-mode clean-aindent-mode bind-map bind-key auto-highlight-symbol auto-compile packed aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line helm avy helm-core popup async)))
  '(paradox-github-token t)
  '(vc-annotate-background nil)
  '(vc-annotate-color-map
@@ -464,7 +466,7 @@ you should place your code here."
  '(vc-annotate-very-old-color nil)
  '(yas-snippet-dirs
    (quote
-    ("~/.spacemacs.d/snippets" yas-installed-snippets-dir "~/.emacs.d/layers/+completion/auto-completion/local/snippets" "~/.emacs.d/elpa/elpy-20190508.1521/snippets/"))))
+    ("~/.spacemacs.d/snippets" yas-installed-snippets-dir "~/.emacs.d/layers/+completion/auto-completion/local/snippets" "~/.emacs.d/elpa/elpy-20190508.1521/snippets/")) t))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
