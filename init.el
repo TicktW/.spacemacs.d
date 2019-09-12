@@ -371,8 +371,8 @@ you should place your code here."
   (modify-syntax-entry ?_ "w")  ;; 不以 _ 作为单词分界
   (elpy-enable)
   ;; 实时显示错误
-  (with-eval-after-load 'flycheck
-    (add-hook 'flycheck-mode-hook #'flycheck-inline-mode))
+  ;; (with-eval-after-load 'flycheck
+  ;;   (add-hook 'flycheck-mode-hook #'flycheck-inline-mode))
 
   ;; 设置快捷键
   ;; 有道词典插件
@@ -385,51 +385,51 @@ you should place your code here."
 
   ;; 发送cell到repl
 
-  (define-key evil-normal-state-map (kbd ", s c") 'elpy-shell-send-codecell)
-  (define-key evil-visual-state-map (kbd ", s c") 'elpy-shell-send-codecell)
+  ;; (define-key evil-normal-state-map (kbd ", s c") 'elpy-shell-send-codecell)
+  ;; (define-key evil-visual-state-map (kbd ", s c") 'elpy-shell-send-codecell)
 
   ;; 发送cell到repl
-  (with-eval-after-load 'elpy
-    (evil-define-key evil-normal-state-map (kbd ", s r") 'elpy-shell-send-region-or-buffer &optional ARG)
-    (evil-define-key evil-visual-state-map (kbd ", s r") 'elpy-shell-send-region-or-buffer-and-go &optional ARG)
+  ;; (with-eval-after-load 'elpy
+  ;;   (evil-define-key evil-normal-state-map (kbd ", s r") 'elpy-shell-send-region-or-buffer &optional ARG)
+  ;;   (evil-define-key evil-visual-state-map (kbd ", s r") 'elpy-shell-send-region-or-buffer-and-go &optional ARG)
 
-    (define-key evil-normal-state-map (kbd ", s R") 'elpy-shell-send-region-or-buffer &optional ARG)
-    (define-key evil-visual-state-map (kbd ", s R") 'elpy-shell-send-region-or-buffer-and-go &optional ARG)
-    )
+  ;;   (define-key evil-normal-state-map (kbd ", s R") 'elpy-shell-send-region-or-buffer &optional ARG)
+  ;;   (define-key evil-visual-state-map (kbd ", s R") 'elpy-shell-send-region-or-buffer-and-go &optional ARG)
+  ;;   )
 
 
   ;; doom mode line begin
-  (require 'doom-modeline)
-  (doom-modeline-mode 1)
+  ;; (require 'doom-modeline)
+  ;; (doom-modeline-mode 1)
 
   ;; If non-nil, a word count will be added to the selection-info modeline segment.
-  (setq doom-modeline-enable-word-count t)
+  ;; (setq doom-modeline-enable-word-count t)
 
   ;; Whether display buffer encoding.
-  (setq doom-modeline-buffer-encoding t)
+  ;; (setq doom-modeline-buffer-encoding t)
 
   ;; Whether display indentation information.
-  (set doom-modeline-indent-info t)
+  ;; (set doom-modeline-indent-info t)
 
   ;; If non-nil, only display one number for checker information if applicable.
-  (setq doom-modeline-checker-simple-format t)
+  ;; (setq doom-modeline-checker-simple-format t)
 
   ;; The maximum displayed length of the branch name of version control.
-  (setq doom-modeline-vcs-max-length 12)
+  ;; (setq doom-modeline-vcs-max-length 12)
 
   ;; Whether display `lsp' state or not. Non-nil to display in mode-line.
-  (setq doom-modeline-lsp t)
+  ;; (setq doom-modeline-lsp t)
 
   ;; Whether display github notifications or not. Requires `ghub` package.
-  (setq doom-modeline-github t)
+  ;; (setq doom-modeline-github t)
 
   ;; The interval of checking github.
-  (setq doom-modeline-github-interval (* 30 60))
+  ;; (setq doom-modeline-github-interval (* 30 60))
 
   ;; Whether display environment version or not
-  (setq doom-modeline-env-version t)
+  ;; (setq doom-modeline-env-version t)
   ;; Or for individual languages
-  (setq doom-modeline-env-enable-python t)
+  ;; (setq doom-modeline-env-enable-python t)
   ;; (setq doom-modeline-env-enable-ruby t)
   ;; (setq doom-modeline-env-enable-perl t)
   ;; (setq doom-modeline-env-enable-go t)
@@ -437,16 +437,16 @@ you should place your code here."
   ;; (setq doom-modeline-env-enable-rust t)
 
   ;; Change the executables to use for the language version string
-  (setq doom-modeline-env-python-executable "py")
+  ;; (setq doom-modeline-env-python-executable "py")
 
   ;; Whether display mu4e notifications or not. Requires `mu4e-alert' package.
-  (setq doom-modeline-mu4e nil)
+  ;; (setq doom-modeline-mu4e nil)
 
   ;; Whether display irc notifications or not. Requires `circe' package.
-  (setq doom-modeline-irc nil)
+  ;; (setq doom-modeline-irc nil)
 
   ;; Function to stylize the irc buffer names.
-  (setq doom-modeline-irc-stylize 'identity)
+  ;; (setq doom-modeline-irc-stylize 'identity)
   ;;
 )
 ;; Do not write anything past this comment. This is where Emacs will
